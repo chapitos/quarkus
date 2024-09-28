@@ -22,7 +22,7 @@ final class DeserializationUtil {
     }
 
     /**
-     * Takes a YAML file as input and output the a list of Kubernetes resources
+     * Takes a YAML file as input and output a list of Kubernetes resources
      * present in the file
      * The list is sorted alphabetically based on the resource Kind
      */
@@ -46,7 +46,7 @@ final class DeserializationUtil {
 
         while (nLine < lines.length) {
             if (lines[nLine].length() < DOCUMENT_DELIMITER.length()
-                    || !lines[nLine].substring(0, DOCUMENT_DELIMITER.length()).equals(DOCUMENT_DELIMITER)) {
+                    || !lines[nLine].startsWith(DOCUMENT_DELIMITER)) {
                 builder.append(lines[nLine]).append(System.lineSeparator());
             } else {
                 documents.add(builder.toString());
