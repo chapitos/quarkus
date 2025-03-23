@@ -63,4 +63,16 @@ public class ContainerSecurityContextConfig {
      *   The Windows specific settings applied to all containers.
      */
     WindowsOptions windowsOptions;
+
+    protected boolean isAnyPropertySet() {
+        return allowPrivilegeEscalation.isPresent() ||
+                privileged.isPresent() ||
+                procMount.isPresent() ||
+                runAsUser.isPresent() ||
+                runAsGroup.isPresent() ||
+                runAsNonRoot.isPresent() ||
+                readOnlyRootFilesystem.isPresent() ||
+                seLinuxOptions.isAnyPropertySet() ||
+                windowsOptions.isAnyPropertySet();
+    }
 }
